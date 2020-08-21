@@ -13,12 +13,17 @@ def saint(sk):
         if not isplace:
             print(saintkey)
             formatedtext = soup.get_text(separator=" ", strip=True).replace("From Wikipedia, the free encyclopedia Jump to navigation Jump to search","").replace("Wikipedia","").replace("Jump to search","").replace("Jump to navigation","")
-            saintdict[saintkey] = {"saint": saintkey,"link": url, "text": resp.text, "formatedtext": formatedtext}
+            genericimages = set(["//upload.wikimedia.org/wikipedia/en/thumb/6/69/P_vip.svg/29px-P_vip.svg.png",'//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png','//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1', '/static/images/footer/wikimedia-button.png','//upload.wikimedia.org/wikipedia/en/thumb/6/62/PD-icon.svg/15px-PD-icon.svg.png', '//upload.wikimedia.org/wikipedia/en/thumb/6/62/PD-icon.svg/15px-PD-icon.svg.png', '//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png','//upload.wikimedia.org/wikipedia/en/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/10px-OOjs_UI_icon_edit-ltr-progressive.svg.png', '//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1', '/static/images/footer/wikimedia-button.png', '/static/images/footer/poweredby_mediawiki_88x31.png'])
+            imagelinks = [img["src"] for img in soup.select("img[src]") if img['src'] not in genericimages]
+            print(f"imagelinks:{imagelinks}")
+            saintdict[saintkey] = {"saint": saintkey,"link": url, "text": resp.text, "formatedtext": formatedtext, "imagelinks":imagelinks}
             with open(f'saints/{saintkey}.json','w', encoding="utf-8") as w:
                 w.write(json.dumps(saintdict[saintkey],indent=2))
             print(f"Success GET {saintkey}")
         else:
             print(f"{saintkey} is a place: {isplace}")
+            # with open("places.txt",'a') as w:
+            #     w.write(saintkey)
     except Exception as e:
         errorlist.append(f"Error {saintkey} {e}")
         print(f"Error {saintkey} {e}")
@@ -28,7 +33,7 @@ if __name__ == '__main__':
     with concurrent.futures.ProcessPoolExecutor() as executor:
         saintset = set()
         with open('saintsraw.txt', 'r', errors='ignore') as r:
-            saintset = set(line for line in r.read().split('\n'))
+            saintset = set([line for line in r.read().split('\n')])
         cs = 1 + (len(saintset)//8)
         executor.map(saint, saintset, chunksize=cs)
     print(f"size:{len(os.listdir('saints'))}")
