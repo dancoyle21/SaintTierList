@@ -12,7 +12,7 @@ def saint(sk):
         isplace = soup.find('span',{'class':'geo-dms'})
         if not isplace:
             print(saintkey)
-            formatedtext = soup.get_text(separator=" ", strip=True).replace("From Wikipedia, the free encyclopedia Jump to navigation Jump to search","").replace("Wikipedia","")
+            formatedtext = soup.get_text(separator=" ", strip=True).replace("From Wikipedia, the free encyclopedia Jump to navigation Jump to search","").replace("Wikipedia","").replace("Jump to search","").replace("Jump to navigation","")
             saintdict[saintkey] = {"saint": saintkey,"link": url, "text": resp.text, "formatedtext": formatedtext}
             with open(f'saints/{saintkey}.json','w', encoding="utf-8") as w:
                 w.write(json.dumps(saintdict[saintkey],indent=2))
