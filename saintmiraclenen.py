@@ -12,18 +12,11 @@ def saint(sk):
         isplace = soup.find('span',{'class':'geo-dms'})
         if not isplace:
             print(saintkey)
-            formatedtext = soup.get_text(separator=" ", strip=True).replace("From Wikipedia, the free encyclopedia Jump to navigation Jump to search","").replace("Wikipedia","").replace("Jump to search","").replace("Jump to navigation","")
-            genericimages = set(["//upload.wikimedia.org/wikipedia/en/thumb/6/69/P_vip.svg/29px-P_vip.svg.png",'//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png','//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1', '/static/images/footer/wikimedia-button.png','//upload.wikimedia.org/wikipedia/en/thumb/6/62/PD-icon.svg/15px-PD-icon.svg.png', '//upload.wikimedia.org/wikipedia/en/thumb/6/62/PD-icon.svg/15px-PD-icon.svg.png', '//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png','//upload.wikimedia.org/wikipedia/en/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/10px-OOjs_UI_icon_edit-ltr-progressive.svg.png', '//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1', '/static/images/footer/wikimedia-button.png', '/static/images/footer/poweredby_mediawiki_88x31.png'])
-            imagelinks = [img["src"] for img in soup.select("img[src]") if img['src'] not in genericimages]
-            print(f"imagelinks:{imagelinks}")
-            saintdict[saintkey] = {"saint": saintkey,"link": url, "text": resp.text, "formatedtext": formatedtext, "imagelinks":imagelinks}
-            with open(f'saints/{saintkey}.json','w', encoding="utf-8") as w:
-                w.write(json.dumps(saintdict[saintkey],indent=2))
+            with open(f'saints/{saintkey}.html', 'w', encoding='utf-8') as w:
+                w.write(resp.text)
             print(f"Success GET {saintkey}")
         else:
             print(f"{saintkey} is a place: {isplace}")
-            # with open("places.txt",'a') as w:
-            #     w.write(saintkey)
     except Exception as e:
         errorlist.append(f"Error {saintkey} {e}")
         print(f"Error {saintkey} {e}")
