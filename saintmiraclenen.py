@@ -34,7 +34,7 @@ if __name__ == '__main__':
         saintset = set()
         with open('saintsraw.txt', 'r', errors='ignore') as r:
             saintset = set([line for line in r.read().split('\n')])
-        cs = len(saintset)//os.cpu_count
+        cs = len(saintset)//os.cpu_count()
         executor.map(saint, saintset, chunksize=cs)
     print(f"size:{len(os.listdir('saints'))}")
 
