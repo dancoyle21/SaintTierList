@@ -1,0 +1,66 @@
+<form id="saintform" methods="POST" action='' class='form'>
+        <label for="selectsaint">Search For Saint By First Letter</label>
+        <select id="selectsaint">
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabeta.pdf">A</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetb.pdf">B</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetc.pdf">C</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetd.pdf">D</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabete.pdf">E</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetf.pdf">F</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetg.pdf">G</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabeth.pdf">H</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabeti.pdf">I</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetj.pdf">J</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetk.pdf">K</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetl.pdf">L</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetm.pdf">M</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetn.pdf">N</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabeto.pdf">O</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetp.pdf">P</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetq.pdf">Q</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetr.pdf">R</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabets.pdf">S</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabett.pdf">T</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetu.pdf">U</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetv.pdf">V</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetw.pdf">W</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetx.pdf">X</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabety.pdf">Y</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabetz.pdf">Z</a></option>
+            <option><a href="https://spellsoftruth.files.wordpress.com/2020/09/saintsbyalphabet.pdf">%</a></option>
+        </select>
+</form>
+<script type="text/javascript">
+    function search4saint() {
+        var input, filter, ul, li, a, i, count;
+        input = document.getElementById("saintsearch");
+        filter = input.value.toUpperCase();
+        console.log(filter);
+        ul = document.getElementById("saintlist");
+        console.log(ul);
+        li = ul.getElementsByTagName("div");
+        count = 0;
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1 && count <= 5) {
+                li[i].style.display = "";
+                count += 1;
+            }
+            else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    function searchtoggle() {
+        document.getElementById("saintsearch").value = "Search For Saint..."
+        search4project();
+    }
+    $(document).ready(function() {
+        document.getElementById('saintsearch').ready(searchtoggle);
+        document.getElementById('saintsearch').focusin(function() {
+            if (document.getElementById("saintsearch").val() === "Search For Saint...") {
+                document.getElementById("saintsearch").value = "";
+            }
+        });
+    });
+</script>
