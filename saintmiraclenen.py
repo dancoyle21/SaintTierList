@@ -80,11 +80,18 @@ def rewritesaintset(saint):
 
 
 from itertools import groupby
+import string
 if __name__ == '__main__':
-    with open('saintset2', 'r', errors='ignore') as r:
-        saintset = sorted(set([line for line in r.read().split('\n')]))
-    with open('saintset2', 'w') as w:
-        w.write('\n'.join(saintset))
+    resp = "Don't say I didn't warn you. The gypsy profits have a book (ryhmes with falmud), in this book they claim that JC was the son of a whore and a roman soldier named pantera. They also say that JC is burning in a lake of s$!t and fire. What do we know about the gypsy profits? We know that they are masters at word spells(zionist, anti-semetic, racist). They use word spells to get around lying because if you outright lie the universe karmically corrects itself and the liar will receive righteous retribution in some form depending on the severity of the lie and the intent behind the lie. So why would the people known throughout the land for getting around lies with word spells say JC was the son of a rape and that JC is burning in a lake of siht and fire? If it was a lie they would likely all die in mysterious accidents within a month. If it was the truth but they used the name to represent a different man then its not technically a lie. JC is a word spell. The gypsy profits inserted the name Jesus Christ into the Bible to replace the real man who was probably named Jmmanuel. The name doesn't matter but the real man was 10x more based than what they tell you about him in the Bible. The pharisees used J's teachings to control the world, they did this by mixing 3 lies in with every 7 truths. The most important part about Christianity are the miracles, and most important part about the Bible is what it does to help people with a high level of perception to navigate their path of awakening to the Creator. Those two things are the cause for Christianity becoming the force thats proactive towards evil (until now), they are not the result of being proactive towards evil, they are the cause. If you want a much more accurate story about J but still not 100%, its about 80-90 percent accurate and reads like the book of matthew which was about 40-50 percent accurate, in fact the book of matthew was supposedly a grabbled copy of the falmud of J. The falmud of J(if I spell it out for you youtube censors my comment) has a pdf link on archive dot org. Are ya startin to figure out why I said that phrase twice?  Now for the third time Ill say it, You Are Not Your Beliefs."
+    lowerletters = string.ascii_lowercase
+    lines = set()
+    lines = set(resp.split())
+    print(isinstance(lines,set))
+
+    # with open('saintset2', 'r', errors='ignore') as r:
+    #     saintset = sorted(set([line for line in r.read().split('\n')]))
+    # with open('saintset2', 'w') as w:
+    #     w.write('\n'.join(saintset))
     # with concurrent.futures.ProcessPoolExecutor() as executor:
     #     with open('saintset', 'r', errors='ignore') as r:
     #         saintset = sorted(set([line for line in r.read().split('\n')]))
